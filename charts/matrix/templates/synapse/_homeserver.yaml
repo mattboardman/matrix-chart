@@ -601,7 +601,7 @@ database:
         user: "{{ .Values.postgresql.username }}"
         password: "{{ .Values.postgresql.password }}"
         database: "{{ .Values.postgresql.database }}"
-        
+
         {{- if .Values.postgresql.enabled }}
         host: "{{ include "matrix.fullname" . }}-postgresql"
         port: "5432"
@@ -1504,60 +1504,82 @@ oidc_config:
   # Uncomment the following to enable authorization against an OpenID Connect
   # server. Defaults to false.
   #
-  #enabled: true
+  {{- if .Values.oidc.enabled }}
+  enabled: {{ .Values.oidc.enabled }}
+  {{- end }}
 
   # Uncomment the following to disable use of the OIDC discovery mechanism to
   # discover endpoints. Defaults to true.
   #
-  #discover: false
+  {{- if .Values.oidc.discover }}
+  discover: {{ .Values.oidc.discover }}
+  {{- end }}
 
   # the OIDC issuer. Used to validate tokens and (if discovery is enabled) to
   # discover the provider's endpoints.
   #
   # Required if 'enabled' is true.
   #
-  #issuer: "https://accounts.example.com/"
+  {{- if .Values.oidc.issuer }}
+  issuer: {{ .Values.oidc.issuer }}
+  {{- end }}
 
   # oauth2 client id to use.
   #
   # Required if 'enabled' is true.
   #
-  #client_id: "provided-by-your-issuer"
+  {{- if .Values.oidc.client_id }}
+  client_id: {{ .Values.oidc.client_id }}
+  {{- end }}
 
   # oauth2 client secret to use.
   #
   # Required if 'enabled' is true.
   #
-  #client_secret: "provided-by-your-issuer"
+  {{- if .Values.oidc.client_secret }}
+  client_secret: {{ .Values.oidc.client_secret }}
+  {{- end }}
 
   # auth method to use when exchanging the token.
   # Valid values are 'client_secret_basic' (default), 'client_secret_post' and
   # 'none'.
   #
-  #client_auth_method: client_secret_post
+  {{- if .Values.oidc.client_auth_method }}
+  client_auth_method: {{ .Values.oidc.client_auth_method }}
+  {{- end }}
 
   # list of scopes to request. This should normally include the "openid" scope.
   # Defaults to ["openid"].
   #
-  #scopes: ["openid", "profile"]
+  {{- if .Values.oidc.scopes }}
+  scopes: {{ .Values.oidc.scopes }}
+  {{- end }}
 
   # the oauth2 authorization endpoint. Required if provider discovery is disabled.
   #
-  #authorization_endpoint: "https://accounts.example.com/oauth2/auth"
+  {{- if .Values.oidc.authorization_endpoint }}
+  authorization_endpoint: {{ .Values.oidc.authorization_endpoint }}
+  {{- end }}
 
   # the oauth2 token endpoint. Required if provider discovery is disabled.
   #
-  #token_endpoint: "https://accounts.example.com/oauth2/token"
+  {{- if .Values.oidc.token_endpoint }}
+  token_endpoint: {{ .Values.oidc.token_endpoint }}
+  {{- end }}
 
   # the OIDC userinfo endpoint. Required if discovery is disabled and the
   # "openid" scope is not requested.
   #
-  #userinfo_endpoint: "https://accounts.example.com/userinfo"
+  {{- if .Values.oidc.userinfo_endpoint }}
+  userinfo_endpoint: {{ .Values.oidc.userinfo_endpoint }}
+  {{- end }}
 
   # URI where to fetch the JWKS. Required if discovery is disabled and the
   # "openid" scope is used.
   #
-  #jwks_uri: "https://accounts.example.com/.well-known/jwks.json"
+  {{- if .Values.oidc.jwks_uri }}
+  jwks_uri: {{- if .Values.oidc.jwks_uri }}
+  {{- end }}
 
   # Uncomment to skip metadata verification. Defaults to false.
   #
