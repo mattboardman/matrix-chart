@@ -1,4 +1,4 @@
-apiVersion: v2
+apiVersion: v1
 name: matrix
 description: A Helm chart to deploy a Matrix homeserver stack into Kubernetes
 icon: "https://dacruz21.github.io/helm-charts/icons/matrix.svg"
