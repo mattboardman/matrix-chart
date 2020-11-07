@@ -1622,14 +1622,10 @@ oidc_config:
       #
       # This must be configured if using the default mapping provider.
       #
-      #localpart_template: {{"{{"}}"user.preferred_username"{{"}}"}}
       # Jinja2 template for the display name to set on first login.
       #
       # If unset, no displayname will be set.
       #
-      #display_name_template: "{{ user.given_name }} {{ user.last_name }}"
-
-
 
 # Enable CAS for registration and login.
 #
