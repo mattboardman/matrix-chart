@@ -202,7 +202,7 @@ matrix:
   # Human readable reason for why the homeserver is blocked
   disabledMessage: ""
 
-  
+
 
   logging:
     # Root log level is the default log level for log outputs that do not have more
