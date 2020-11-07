@@ -1621,8 +1621,7 @@ oidc_config:
       #     Token"
       #
       # This must be configured if using the default mapping provider.
-      #
-      localpart_template: {{`"{{ user.preferred_username}}"`}}
+      localpart_template: {{`"{{ user.preferred_username }}"`}}
 
 # Enable CAS for registration and login.
 #
@@ -1989,7 +1988,6 @@ email:
     # ownership.
     #email_validation: "[%(server_name)s] Validate your email"
 
-
 # Password providers allow homeserver administrators to integrate
 # their Synapse installation with existing authentication methods
 # ex. LDAP, external tokens, etc.
@@ -2001,7 +1999,7 @@ email:
 # instead use the `saml2_config` or `cas_config` options,
 # respectively.
 #
-password_providers:
+#password_providers:
 #    # Example config for an LDAP auth provider
 #    - module: "ldap_auth_provider.LdapAuthProvider"
 #      config:
