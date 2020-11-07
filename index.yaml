@@ -2,6 +2,24 @@ apiVersion: v1
 entries:
   matrix:
   - apiVersion: v1
+    appVersion: 1.22.28
+    created: "2020-11-07T23:50:20.82360508Z"
+    description: A Helm chart to deploy a Matrix homeserver stack into Kubernetes
+    digest: 4c2349ec18fa4c18a7bf237434beb23e9faa9f9938ca4232eb05a32e1f01347a
+    home: https://github.com/dacruz21/matrix-chart
+    icon: https://dacruz21.github.io/helm-charts/icons/matrix.svg
+    maintainers:
+    - email: david@typokign.com
+      name: David Cruz
+      url: https://github.com/dacruz21/
+    name: matrix
+    sources:
+    - https://github.com/dacruz21/matrix-chart
+    type: application
+    urls:
+    - https://github.com/mattboardman/matrix-chart/releases/download/matrix-2.8.28/matrix-2.8.28.tgz
+    version: 2.8.28
+  - apiVersion: v1
     appVersion: 1.22.27
     created: "2020-11-07T22:03:05.58716077Z"
     description: A Helm chart to deploy a Matrix homeserver stack into Kubernetes
