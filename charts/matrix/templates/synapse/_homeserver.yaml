@@ -1618,11 +1618,11 @@ oidc_config:
       #
       # When rendering, this template is given the following variables:
       #   * user: The claims returned by the UserInfo Endpoint and/or in the ID
-      #     Token
+      #     Token"
       #
       # This must be configured if using the default mapping provider.
       #
-{{      localpart_template: "{{ user.preferred_username }}"}}
+{{      "localpart_template: {{ user.preferred_username }}"}}
       # Jinja2 template for the display name to set on first login.
       #
       # If unset, no displayname will be set.
