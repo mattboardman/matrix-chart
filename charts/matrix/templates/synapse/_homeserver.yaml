@@ -1539,6 +1539,29 @@ oidc_config:
   {{- if .Values.oidc.client_secret }}
   client_secret: {{ .Values.oidc.client_secret }}
   {{- end }}
+
+  # auth method to use when exchanging the token.
+  # Valid values are 'client_secret_basic' (default), 'client_secret_post' and
+  # 'none'.
+  #
+
+  # Error below here
+  {{- if .Values.oidc.client_auth_method }}
+  client_auth_method: {{ .Values.oidc.client_auth_method }}
+  {{- end }}
+
+  # list of scopes to request. This should normally include the "openid" scope.
+  # Defaults to ["openid"].
+  #
+  {{- if .Values.oidc.scopes }}
+  scopes: {{ .Values.oidc.scopes }}
+  {{- end }}
+
+  # the oauth2 authorization endpoint. Required if provider discovery is disabled.
+  #
+  {{- if .Values.oidc.authorization_endpoint }}
+  authorization_endpoint: {{ .Values.oidc.authorization_endpoint }}
+  {{- end }}
   # An external module can be provided here as a custom solution to mapping
   # attributes returned from a OIDC provider onto a matrix user.
   #
