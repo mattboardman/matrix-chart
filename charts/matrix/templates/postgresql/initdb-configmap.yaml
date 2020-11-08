@@ -17,6 +17,10 @@ data:
       LC_CTYPE='C'
       template=template0
       OWNER {{ .Values.postgresql.username }};
+  {{- if .Values.postgresql.initdb }}
+  matrix-init.sql: |
+    {{ .Values.postgresql.initdb }}
+  {{- end }}
   {{- if .Values.bridges.irc.enabled }}
   {{/* Scripts are run in alphabetical order */}}
   zzz_irc.sql: |
