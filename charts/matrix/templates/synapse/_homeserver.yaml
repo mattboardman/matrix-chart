@@ -1511,10 +1511,7 @@ oidc_config:
   # Uncomment the following to disable use of the OIDC discovery mechanism to
   # discover endpoints. Defaults to true.
   #
-  {{- if .Values.oidc.discover }}
-  discover: {{ .Values.oidc.discover }}
-  {{- end }}
-
+  discover: false
   # the OIDC issuer. Used to validate tokens and (if discovery is enabled) to
   # discover the provider's endpoints.
   #
@@ -1613,6 +1610,7 @@ oidc_config:
       #
       # This must be configured if using the default mapping provider.
       localpart_template: {{`"{{ user.preferred_username }}"`}}
+      display_name_template: {{`"{{ user.name }}"`}}
 
 # Enable CAS for registration and login.
 #
