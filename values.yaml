@@ -202,8 +202,6 @@ matrix:
   # Human readable reason for why the homeserver is blocked
   disabledMessage: ""
 
-
-
   logging:
     # Root log level is the default log level for log outputs that do not have more
     # specific settings.
@@ -213,6 +211,21 @@ matrix:
     sqlLogLevel: WARNING
     # The log level for the synapse server
     synapseLogLevel: WARNING
+
+# Configuration guide here https://github.com/matrix-org/synapse/blob/11fd90a2b7a5192026e9d177e042acd2aff58348/docs/openid.md
+oidc:
+  #enabled: true
+  #issuer: "https://your-tier.eu.auth0.com/"
+  #client_id: "your-client-id"
+  #client_secret: "your-client-secret"
+  #authorization_endpoint: "https://github.com/login/oauth/authorize"
+  #token_endpoint: "https://github.com/login/oauth/access_token"
+  #userinfo_endpoint: "https://api.github.com/user"
+  #scopes: ["openid", "profile"]
+  #user_mapping_provider:
+  #  config:
+  #    localpart_template: "user.preferred_username"
+  #    display_name_template: "user.name"
 
 # Persistent volumes configuration
 volumes:
@@ -305,7 +318,7 @@ synapse:
   # Labels to be appended to all Synapse resources
   labels:
     component: synapse
-
+  
   # Prometheus metrics for Synapse
   # https://github.com/matrix-org/synapse/blob/master/docs/metrics-howto.md
   metrics:
@@ -478,7 +491,7 @@ mail:
     labels:
       component: mail
 
-
+  
   # External mail server
   external:
     host: ""

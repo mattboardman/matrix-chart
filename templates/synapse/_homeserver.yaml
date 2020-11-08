@@ -601,7 +601,7 @@ database:
         user: "{{ .Values.postgresql.username }}"
         password: "{{ .Values.postgresql.password }}"
         database: "{{ .Values.postgresql.database }}"
-
+        
         {{- if .Values.postgresql.enabled }}
         host: "{{ include "matrix.fullname" . }}-postgresql"
         port: "5432"
@@ -1511,7 +1511,9 @@ oidc_config:
   # Uncomment the following to disable use of the OIDC discovery mechanism to
   # discover endpoints. Defaults to true.
   #
-  discover: true
+  {{- if .Values.oidc.discover }}
+  discover: {{ .Values.oidc.discover }}
+  {{- end }}
   # the OIDC issuer. Used to validate tokens and (if discovery is enabled) to
   # discover the provider's endpoints.
   #
@@ -1577,6 +1579,15 @@ oidc_config:
   {{- if .Values.oidc.jwks_uri }}
   jwks_uri: {{ .Values.oidc.jwks_uri }}
   {{- end }}
+
+  # Uncomment to skip metadata verification. Defaults to false.
+  #
+  # Use this if you are connecting to a provider that is not OpenID Connect
+  # compliant.
+  # Avoid this in production.
+  #
+  #skip_verification: true
+
   # An external module can be provided here as a custom solution to mapping
   # attributes returned from a OIDC provider onto a matrix user.
   #
@@ -1587,7 +1598,9 @@ oidc_config:
     # See https://github.com/matrix-org/synapse/blob/master/docs/sso_mapping_providers.md#openid-mapping-providers
     # for information on implementing a custom mapping provider.
     #
-    #module: mapping_provider.OidcMappingProvider
+    {{- if .Values.oidc.user_mapping_provider.module }}
+    module: {{ .Values.oidc.user_mapping_provider.module }}
+    {{- end}}
 
     # Custom configuration values for the module. This section will be passed as
     # a Python dictionary to the user mapping provider module's `parse_config`
@@ -1606,11 +1619,22 @@ oidc_config:
       #
       # When rendering, this template is given the following variables:
       #   * user: The claims returned by the UserInfo Endpoint and/or in the ID
-      #     Token"
+      #     Token
       #
       # This must be configured if using the default mapping provider.
-      localpart_template: {{`"{{ user.preferred_username }}"`}}
-      display_name_template: {{`"{{ user.name }}"`}}
+      #
+      {{- if .Values.oidc.localpart_template }}
+      localpart_template: {{"{{"}}{{ .Values.oidc.localpart_template }}{{"}}"}}
+      {{- end}}
+      # Jinja2 template for the display name to set on first login.
+      #
+      # If unset, no displayname will be set.
+      #
+      {{- if .Values.oidc.display_name_template }}
+      localpart_template: {{"{{"}}{{ .Values.oidc.display_name_template }}{{"}}"}}
+      {{- end}}
+
+
 
 # Enable CAS for registration and login.
 #
@@ -1977,6 +2001,7 @@ email:
     # ownership.
     #email_validation: "[%(server_name)s] Validate your email"
 
+
 # Password providers allow homeserver administrators to integrate
 # their Synapse installation with existing authentication methods
 # ex. LDAP, external tokens, etc.
@@ -1988,7 +2013,7 @@ email:
 # instead use the `saml2_config` or `cas_config` options,
 # respectively.
 #
-#password_providers:
+password_providers:
 #    # Example config for an LDAP auth provider
 #    - module: "ldap_auth_provider.LdapAuthProvider"
 #      config:
