@@ -1,4 +1,4 @@
-{{- if not .Values.postgresql.initdbScripts }}
+{{- if .Values.postgresql.enabled }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
