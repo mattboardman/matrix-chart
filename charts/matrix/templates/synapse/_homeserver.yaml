@@ -1563,28 +1563,6 @@ oidc_config:
   authorization_endpoint: {{ .Values.oidc.authorization_endpoint }}
   {{- end }}
 
-  # the oauth2 token endpoint. Required if provider discovery is disabled.
-  #
-  {{- if .Values.oidc.token_endpoint }}
-  token_endpoint: {{ .Values.oidc.token_endpoint }}
-  {{- end }}
-
-  # the OIDC userinfo endpoint. Required if discovery is disabled and the
-  # "openid" scope is not requested.
-  #
-  {{- if .Values.oidc.userinfo_endpoint }}
-  userinfo_endpoint: {{ .Values.oidc.userinfo_endpoint }}
-  {{- end }}
-
-  # URI where to fetch the JWKS. Required if discovery is disabled and the
-  # "openid" scope is used.
-  #
-  {{- if .Values.oidc.jwks_uri }}
-  jwks_uri: {{- if .Values.oidc.jwks_uri }}
-  {{- end }}
-  # An external module can be provided here as a custom solution to mapping
-  # attributes returned from a OIDC provider onto a matrix user.
-  #
   user_mapping_provider:
     # The custom module's class. Uncomment to use a custom module.
     # Default is 'synapse.handlers.oidc_handler.JinjaOidcMappingProvider'.
