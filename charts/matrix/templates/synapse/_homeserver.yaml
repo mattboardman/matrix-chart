@@ -1609,8 +1609,12 @@ oidc_config:
       #     Token"
       #
       # This must be configured if using the default mapping provider.
-      localpart_template: {{`"{{ user.preferred_username }}"`}}
-      display_name_template: {{`"{{ user.name }}"`}}
+      {{- if .Values.oidc.localpart_template }}
+      localpart_template: {{ .Values.oidc.localpart_template }}
+      {{- end }}
+      {{- if .Values.oidc.display_name_template }}
+      display_name_template: {{ .Values.oidc.display_name_template }}
+      {{- end }}
 
 # Enable CAS for registration and login.
 #
