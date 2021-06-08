@@ -247,7 +247,7 @@ ingress:
 # PostgreSQL Database Configuration
 postgresql:
   # Whether to deploy the stable/postgresql chart with this chart. If disabled, make sure PostgreSQL is available at the hostname below and credentials are configured below
-  enabled: true
+  enabled: false
 
   username: matrix
   password: matrix
